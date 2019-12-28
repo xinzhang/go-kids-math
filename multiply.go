@@ -19,6 +19,18 @@ func randomNumber() int {
 	return rand.Intn(8) + 2
 }
 
+func getStudentName(defaultName string) string {
+	fmt.Printf("Current student name is %s, what is your name? press enter to Continue  ", defaultName)
+	buf := bufio.NewReader(os.Stdin)
+	myInput, _ := buf.ReadString('\n')
+
+	if strings.TrimSuffix(myInput, "\n") == "" {
+		return defaultName
+	} else {
+		return strings.TrimSuffix(myInput, "\n")
+	}
+}
+
 func main() {
 	fmt.Printf("Hi %s, there are %d questions to answer in your test: ", studentName, total)
 	fmt.Println()
@@ -57,9 +69,10 @@ func main() {
 
 	duration := time.Since(startTime)
 	fmt.Printf("Total %s \n", humanizeDuration(duration))
+	myName := getStudentName(studentName)
 
 	f, _ := os.OpenFile("multiply_records", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
-	f.WriteString(startTime.Format("2006-01-02") + ": " + studentName + ": " + humanizeDuration(duration) + "\n")
+	f.WriteString(startTime.Format("2006-01-02") + ": " + myName + ": " + strconv.Itoa(total) + " questions: " + humanizeDuration(duration) + "\n")
 
 }
 
