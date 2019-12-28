@@ -11,7 +11,7 @@ import (
 )
 
 func sayHello() string {
-	hours := 8
+	hours := time.Now().Hour()
 
 	if hours > 5 && hours < 12 {
 		return "good morning"
