@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-var total int = 5
+var total int = 10
 
 var studentName string = "Ian"
 
