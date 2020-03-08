@@ -72,6 +72,6 @@ func main() {
 	myName := getStudentName(studentName)
 
 	f, _ := os.OpenFile("multiply_records", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
-	f.WriteString(startTime.Format("2006-01-02") + ": " + myName + ": " + strconv.Itoa(total) + " questions: " + humanizeDuration(duration) + "\n")
+	f.WriteString(startTime.Format("2006-01-02") + ": " + myName + ": " + strconv.Itoa(total) + " questions: " + utils.HumanizeDuration(duration) + "\n")
 
 }

@@ -14,7 +14,7 @@ import (
 var total int = 10
 var studentName string = "Ian"
 
-var useMultiply bool = true
+var useMultiply bool = false
 var plusMinusSeed int = 999
 var multiplySeed int = 99
 
@@ -81,6 +81,6 @@ func main() {
 	fmt.Printf("Total %s \n", utils.HumanizeDuration(duration))
 
 	f, _ := os.OpenFile("records", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
-	f.WriteString(startTime.Format("2006-01-02") + ": " + studentName + ": " + humanizeDuration(duration) + "\n")
+	f.WriteString(startTime.Format("2006-01-02") + ": " + studentName + ": " + utils.HumanizeDuration(duration) + "\n")
 
 }
