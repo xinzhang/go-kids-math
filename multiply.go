@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-var total int = 3
+var total int = 50
 
 var studentName string = "Ian"
 
@@ -72,6 +72,6 @@ func main() {
 	myName := getStudentName(studentName)
 
 	f, _ := os.OpenFile("multiply_records", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
-	f.WriteString(startTime.Format("2006-01-02") + ": " + myName + ": " + strconv.Itoa(total) + " questions: " + utils.HumanizeDuration(duration) + "\n")
+	f.WriteString(startTime.Format("2006-01-02") + ": " + myName + ": " + strconv.Itoa(total) + " questions: " + utils.H,ml  umanizeDuration(duration) + "\n")
 
 }
