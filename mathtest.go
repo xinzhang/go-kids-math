@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-var total int = 10
+var total int = 50
 var studentName string = "Ian"
 
 var useMultiply bool = true
@@ -39,7 +39,7 @@ func main() {
 			defaultMethodOptions = 4
 		}
 		method := rand.Intn(defaultMethodOptions)
-
+		method = 3
 		var expected, x, y int = 0, 0, 0
 		var expectedReminder int = 0
 
@@ -86,9 +86,18 @@ func main() {
 
 			// this is divided
 			if method == 3 {
+				myanswerReminder := 0
 				r := strings.Split(strings.TrimSuffix(answer, "\n"), ",")
 				myanswer, err := strconv.Atoi(strings.Trim(r[0], " "))
-				myanswerReminder, err := strconv.Atoi(strings.Trim(r[1], " "))
+
+				if len(r) == 1 {
+					if expectedReminder > 0 {
+						fmt.Println("Wrong")
+						continue
+					}
+				} else {
+					myanswerReminder, err = strconv.Atoi(strings.Trim(r[1], " "))
+				}
 
 				if err != nil {
 					fmt.Println(err)
