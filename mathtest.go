@@ -18,7 +18,7 @@ var useMultiply bool = true
 var useDivision bool = true
 var plusMinusSeed int = 999
 var multiplySeed int = 99
-var divideSeedX int = 99
+var divideSeedX int = 999
 var divideSeedY int = 9
 
 func main() {
