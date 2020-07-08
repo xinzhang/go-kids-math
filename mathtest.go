@@ -39,7 +39,6 @@ func main() {
 			defaultMethodOptions = 4
 		}
 		method := rand.Intn(defaultMethodOptions)
-		method = 3
 		var expected, x, y int = 0, 0, 0
 		var expectedReminder int = 0
 
