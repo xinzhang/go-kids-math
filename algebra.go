@@ -80,7 +80,7 @@ func main() {
 			buf := bufio.NewReader(os.Stdin)
 			answer, err := buf.ReadString('\n')
 
-			r := strings.Split(strings.TrimSuffix(answer, "\n"), ",")
+			r := strings.Split(strings.TrimSuffix(answer, "\r\n"), ",")
 			myAnswerX, err := strconv.Atoi(strings.Trim(r[0], " "))
 			myAnswerY, err := strconv.Atoi(strings.Trim(r[1], " "))
 
