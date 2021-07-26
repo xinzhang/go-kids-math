@@ -11,15 +11,15 @@ import (
 	"time"
 )
 
-var total int = 50
+var total int = 30
 var studentName string = "Ian"
 
 var useMultiply bool = true
 var useDivision bool = true
 var plusMinusSeed int = 999
-var multiplySeed int = 99
-var divideSeedX int = 999
-var divideSeedY int = 9
+var multiplySeed int = 999
+var divideSeedX int = 9999
+var divideSeedY int = 99
 
 func main() {
 	fmt.Printf("Hi %s, there are %d questions to answer in your test: ", studentName, total)
@@ -86,7 +86,7 @@ func main() {
 			// this is divided
 			if method == 3 {
 				myanswerReminder := 0
-				r := strings.Split(strings.TrimSuffix(answer, "\n"), ",")
+				r := strings.Split(strings.TrimSuffix(answer, "\r\n"), ",")
 				myanswer, err := strconv.Atoi(strings.Trim(r[0], " "))
 
 				if len(r) == 1 {
@@ -113,7 +113,7 @@ func main() {
 				continue
 			}
 
-			myanswer, err := strconv.Atoi(strings.TrimSuffix(answer, "\n"))
+			myanswer, err := strconv.Atoi(strings.TrimSuffix(answer, "\r\n"))
 			if err != nil {
 				fmt.Println(err)
 				continue
@@ -129,7 +129,7 @@ func main() {
 	}
 
 	duration := time.Since(startTime)
-	fmt.Printf("Total %s \n", utils.HumanizeDuration(duration))
+	fmt.Printf("Total %s \r\n", utils.HumanizeDuration(duration))
 
 	f, _ := os.OpenFile("records", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
 	f.WriteString(startTime.Format("2006-01-02") + ": " + studentName + ": " + utils.HumanizeDuration(duration) + "\n")
