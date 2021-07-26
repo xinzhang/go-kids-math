@@ -11,12 +11,12 @@ import (
 	"time"
 )
 
-var total int = 10
+var totalQuestions int = 8
 var studentName string = "Ian"
 
 var useTwo bool = true
-var numberSeed int = 30
-var timesSeed int = 5
+var numberSeed int = 40
+var timesSeed int = 3
 var plusMinusSeed int = 2
 
 func getPlusMinus() string {
@@ -54,14 +54,15 @@ func getTotalEquation(x int, y int) string {
 }
 
 func main() {
-	fmt.Printf("Hi %s, there are %d questions to answer in your test: ", studentName, total)
+	fmt.Println(totalQuestions)
+	fmt.Printf("Hi %s, there are %d questions to answer in your test: ", studentName, totalQuestions)
 	fmt.Println()
 
 	startTime := time.Now()
 	fmt.Println(startTime.Format("2006-01-02 15:04:05"))
 	rand.Seed(time.Now().UnixNano())
 
-	for i := 0; i < total; i++ {
+	for i := 0; i < totalQuestions; i++ {
 		
 		var x, y int = 0, 0
 		x = rand.Intn(numberSeed) + 1
@@ -76,16 +77,28 @@ func main() {
 			fmt.Println(line1)
 			fmt.Println(line2)
 
-			//var myAnswerX, myAnswerY int = 0, 0
 			buf := bufio.NewReader(os.Stdin)
 			answer, err := buf.ReadString('\n')
-
-			r := strings.Split(strings.TrimSuffix(answer, "\r\n"), ",")
-			myAnswerX, err := strconv.Atoi(strings.Trim(r[0], " "))
-			myAnswerY, err := strconv.Atoi(strings.Trim(r[1], " "))
-
 			if err != nil {
 				fmt.Println(err)
+				continue
+			}
+
+			r := strings.Split(strings.TrimSuffix(answer, "\r\n"), ",")
+			if (len(r) != 2) {
+				fmt.Println("you need to enter like this x, y")
+				continue
+			}
+
+			myAnswerX, err1 := strconv.Atoi(strings.Trim(r[0], " "))
+			if err1 != nil {
+				fmt.Println(err1)
+				continue
+			}
+
+			myAnswerY, err2 := strconv.Atoi(strings.Trim(r[1], " "))
+			if err2 != nil {
+				fmt.Println(err2)
 				continue
 			}
 
