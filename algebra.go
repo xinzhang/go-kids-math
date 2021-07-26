@@ -36,7 +36,7 @@ func checkTimes(times int) string {
 	}
 }
 
-func getTotalEquation(x int, y int) string {
+func getTotalEquation(x int, y int) (int, int, string) {
 	var plusMinus = getPlusMinus()
 
 	var times1 = rand.Intn(timesSeed) + 1
@@ -50,7 +50,8 @@ func getTotalEquation(x int, y int) string {
 		total = times1 * x - times2 * y
 	}
 
-	return checkTimes(times1) + "X " + plusMinus + " " + checkTimes(times2) + "Y = " + strconv.Itoa(total)
+	var line = checkTimes(times1) + "X " + plusMinus + " " + checkTimes(times2) + "Y = " + strconv.Itoa(total)
+	return times1, total, line
 }
 
 func main() {
@@ -68,8 +69,12 @@ func main() {
 		x = rand.Intn(numberSeed) + 1
 		y = rand.Intn(numberSeed) + 1
 
-		var line1 = getTotalEquation(x, y);
-		var line2 = getTotalEquation(x, y);
+		var times1, total1, line1 = getTotalEquation(x, y);
+		var times2, total2, line2 = getTotalEquation(x, y);
+
+		for (total2 % total1 == 0 && times2 / times1 == total2 / total1) {
+			times2, total2, line2 = getTotalEquation(x, y)
+		}
 
 		var answerRight bool = false		
 
@@ -84,7 +89,7 @@ func main() {
 				continue
 			}
 
-			r := strings.Split(strings.TrimSuffix(answer, "\r\n"), ",")
+			r := strings.Split(strings.TrimSuffix(answer, "\n"), ",")
 			if (len(r) != 2) {
 				fmt.Println("you need to enter like this x, y")
 				continue
