@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-var total int = 50
+var total int = 100
 var studentName string = "Ian"
 
 var useMultiply bool = true
@@ -19,7 +19,7 @@ var useDivision bool = true
 var plusMinusSeed int = 999
 var multiplySeed int = 99
 var divideSeedX int = 999
-var divideSeedY int = 9
+var divideSeedY int = 20
 
 func main() {
 	fmt.Printf("Hi %s, there are %d questions to answer in your test: ", studentName, total)
