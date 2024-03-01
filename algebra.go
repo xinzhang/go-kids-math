@@ -11,12 +11,12 @@ import (
 	"time"
 )
 
-var totalQuestions int = 8
+var total int = 10
 var studentName string = "Ian"
 
 var useTwo bool = true
-var numberSeed int = 40
-var timesSeed int = 3
+var numberSeed int = 30
+var timesSeed int = 5
 var plusMinusSeed int = 2
 
 func getPlusMinus() string {
