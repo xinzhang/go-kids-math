@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-var studentName string = "Ian"
+var studentName string = "Easan"
 
 func main() {
 	fmt.Printf("Hi %s, there are %d questions to answer in your test: ", studentName)
