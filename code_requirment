@@ -1,0 +1,9 @@
+can you create a program similar to the multiply.go, mathtest.go
+but it is not a math question, it needs to call chatGPT to send prompt and wait to have one question back.. it should have a text and 4 questions .. then the user has to enter a,b,c,d to select one and if it right it will be counted one point, go to next, if it is wrong, the terminal the whole question and answer will retry again.. and it will not count score. . in the end a score should return
+
+it should be one go file name thinkingskills.go and the prompt example is in prompt.md
+everytime this should sent to chatgpt and ask it to give a question based on it..
+
+the question should be kept the same only when the uer answered right one..
+so when it is wrong, the question will display again to ask
+

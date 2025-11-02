@@ -2,3 +2,7 @@ records
 multiply_records
 *.exe
 dist/*
+.DS_Store
+config
+*.log
+__pycache__/
