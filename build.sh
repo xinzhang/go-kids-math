@@ -23,6 +23,9 @@ go build -o dist/thinkingskills thinkingskills.go
 echo "Building algebra..."
 go build -o dist/algebra algebra.go
 
+echo "Building tstrial..."
+go build -o dist/tstrial tstrial.go
+
 # Copy config file
 echo "Copying config file..."
 cp config dist/config
@@ -34,4 +37,5 @@ echo "  - mathtest"
 echo "  - multiply"
 echo "  - thinkingskills"
 echo "  - algebra"
+echo "  - tstrial"
 echo "  - config"
