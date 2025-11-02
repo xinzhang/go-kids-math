@@ -12,11 +12,39 @@ import (
 )
 
 var total int = 50
+var studentName string = "Eason"
 
-var studentName string = "Ian"
+var xSeed int = 14
+var ySeed int = 10
 
-func randomNumber() int {
-	return rand.Intn(8) + 2
+func randomXNumber() int {
+	return rand.Intn(xSeed) + 2
+}
+
+func randomYNumber() int {
+	return rand.Intn(ySeed) + 2
+}
+
+func loadConfig(filename string) map[string]string {
+	config := make(map[string]string)
+	file, err := os.Open(filename)
+	if err != nil {
+		return config
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := strings.TrimSpace(scanner.Text())
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
+		}
+		parts := strings.SplitN(line, "=", 2)
+		if len(parts) == 2 {
+			config[strings.TrimSpace(parts[0])] = strings.TrimSpace(parts[1])
+		}
+	}
+	return config
 }
 
 func getStudentName(defaultName string) string {
@@ -32,6 +60,24 @@ func getStudentName(defaultName string) string {
 }
 
 func main() {
+	// Load config
+	config := loadConfig("config")
+	if val, ok := config["multiply_total"]; ok {
+		if num, err := strconv.Atoi(val); err == nil {
+			total = num
+		}
+	}
+	if val, ok := config["multiply_X_seed"]; ok {
+		if num, err := strconv.Atoi(val); err == nil {
+			xSeed = num
+		}
+	}
+	if val, ok := config["multiply_Y_seed"]; ok {
+		if num, err := strconv.Atoi(val); err == nil {
+			ySeed = num
+		}
+	}
+
 	fmt.Printf("Hi %s, there are %d questions to answer in your test: ", studentName, total)
 	fmt.Println()
 
@@ -41,8 +87,8 @@ func main() {
 
 	for i := 0; i < total; i++ {
 		answerRight := false
-		x := randomNumber()
-		y := randomNumber()
+		x := randomXNumber()
+		y := randomYNumber()
 
 		for !answerRight {
 			expected := 0
@@ -72,6 +118,6 @@ func main() {
 	myName := getStudentName(studentName)
 
 	f, _ := os.OpenFile("multiply_records", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
-	f.WriteString(startTime.Format("2006-01-02") + ": " + myName + ": " + strconv.Itoa(total) + " questions: " + utils.H,ml  umanizeDuration(duration) + "\n")
+	f.WriteString(startTime.Format("2006-01-02") + ": " + myName + ": " + strconv.Itoa(total) + " questions: " + utils.HumanizeDuration(duration) + "\n")
 
 }

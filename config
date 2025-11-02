@@ -1,0 +1,7 @@
+multiply_total=100
+multiply_X_seed=15
+multiply_Y_seed=12
+
+mathtest_total=50
+mathtest_multiply=true
+mathtest_divide=true
