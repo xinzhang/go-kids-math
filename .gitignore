@@ -1,7 +1,6 @@
 records
-multiply_records
+*_records
 *.exe
-dist/*
 .DS_Store
 config
 *.log

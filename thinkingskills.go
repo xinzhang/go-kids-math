@@ -194,14 +194,12 @@ func main() {
 			totalQuestions = num
 		}
 	}
-	if val, ok := config["openai_api_key"]; ok {
-		apiKey = val
-	}
 
-	// Check if API key is set
+	// Get API key from environment variable
+	apiKey = os.Getenv("OPENAI_API_KEY")
 	if apiKey == "" {
-		fmt.Println("Error: OpenAI API key not found in config file.")
-		fmt.Println("Please add 'openai_api_key=your_api_key' to the config file.")
+		fmt.Println("Error: OpenAI API key not found in environment variable.")
+		fmt.Println("Please set the OPENAI_API_KEY environment variable.")
 		os.Exit(1)
 	}
 

@@ -5,3 +5,9 @@ multiply_Y_seed=12
 mathtest_total=50
 mathtest_multiply=true
 mathtest_divide=true
+
+thinkingskills_total=10
+
+algebra_total=10
+
+OPENAI_API_KEY=

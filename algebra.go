@@ -12,7 +12,7 @@ import (
 )
 
 var total int = 10
-var studentName string = "Ian"
+var studentName string = "Eason"
 
 var useTwo bool = true
 var numberSeed int = 30
@@ -36,6 +36,28 @@ func checkTimes(times int) string {
 	}
 }
 
+func loadConfig(filename string) map[string]string {
+	config := make(map[string]string)
+	file, err := os.Open(filename)
+	if err != nil {
+		return config
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := strings.TrimSpace(scanner.Text())
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
+		}
+		parts := strings.SplitN(line, "=", 2)
+		if len(parts) == 2 {
+			config[strings.TrimSpace(parts[0])] = strings.TrimSpace(parts[1])
+		}
+	}
+	return config
+}
+
 func getTotalEquation(x int, y int) (int, int, string) {
 	var plusMinus = getPlusMinus()
 
@@ -55,15 +77,23 @@ func getTotalEquation(x int, y int) (int, int, string) {
 }
 
 func main() {
-	fmt.Println(totalQuestions)
-	fmt.Printf("Hi %s, there are %d questions to answer in your test: ", studentName, totalQuestions)
+	// Load config
+	config := loadConfig("config")
+	if val, ok := config["algebra_total"]; ok {
+		if num, err := strconv.Atoi(val); err == nil {
+			total = num
+		}
+	}
+
+	fmt.Println(total)
+	fmt.Printf("Hi %s, there are %d questions to answer in your test: ", studentName, total)
 	fmt.Println()
 
 	startTime := time.Now()
 	fmt.Println(startTime.Format("2006-01-02 15:04:05"))
 	rand.Seed(time.Now().UnixNano())
 
-	for i := 0; i < totalQuestions; i++ {
+	for i := 0; i < total; i++ {
 		
 		var x, y int = 0, 0
 		x = rand.Intn(numberSeed) + 1
